@@ -21,9 +21,13 @@ with open('write.csv', 'a') as f:
     df.to_csv(f, header=False)
 
 fixed_df = pd.read_csv('write.csv', sep=',', encoding='latin1', parse_dates=['datetime'], dayfirst=False, index_col='datetime')
-fixed_df = fixed_df.tail(24)
 
-#Plots the temp
-plot_temp = fixed_df[['temperature', 'humidity']].plot()
-fig_temp = plot_temp.get_figure()
-fig_temp.savefig("Measurements.png")
+#Plots the temp in the past 24 hours
+plot_all = fixed_df[['temperature', 'humidity']].plot()
+fig_all = plot_all.get_figure()
+fig_all.savefig("Measurements_All.png")
+
+#Plots the temp in the past 24 hours
+plot_24 = fixed_df[['temperature', 'humidity']].tail(24).plot()
+fig_24 = plot_24.get_figure()
+fig_24.savefig("Measurements_24Hrs.png")
