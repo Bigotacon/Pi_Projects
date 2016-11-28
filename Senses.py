@@ -10,7 +10,7 @@ time_measured = strftime("%I:%M:%S %p", localtime())
 
 sense = SenseHat()
 temp = sense.get_temperature()
-hum = sense.get_temperature_from_humidity()
+hum = sense.get_humidity()
 
 d = {'date':date_measured, 'time':time_measured, 'temperature':temp, 'humidity': hum}
 df = pd.DataFrame(data=d, index=[datetime_measured])
@@ -19,7 +19,6 @@ df.index.name = 'datetime'
 
 with open('write.csv', 'a') as f:
     df.to_csv(f, header=False)
-
 
 fixed_df = pd.read_csv('write.csv', sep=',', encoding='latin1', parse_dates=['datetime'], dayfirst=False, index_col='datetime')
 fixed_df = fixed_df.tail(24)
