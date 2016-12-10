@@ -9,7 +9,9 @@ def main():
     hum = sense.get_humidity()
     pressure = sense.get_pressure()
 
+    cpu_temp = int(open('/sys/class/thermal/thermal_zone0/temp').read()) / 1000
     FACTOR = 5.466
+
     temp_calibrated = temp - ((cpu_temp - temp)/FACTOR)
     streamDictionary = {'temperature': temp_calibrated}
     m2xSenseHatRasperryPi3 = attM2x("Rarpberry Pi",

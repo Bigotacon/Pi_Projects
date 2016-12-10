@@ -3,15 +3,17 @@ import pandas as pd
 from time import localtime, strftime
 from sense_hat import SenseHat
 
+FACTOR = 5.466
+cpu_temp = int(open('/sys/class/thermal/thermal_zone0/temp').read()) / 1000
+
 cols = ['date', 'time', 'humidity', 'temperature']
 datetime_measured = strftime("%Y-%m-%d %I:%M:%S %p", localtime())
 date_measured = strftime("%Y-%m-%d", localtime())
 time_measured = strftime("%I:%M:%S %p", localtime())
 
 sense = SenseHat()
-cpu_temp = int(open('/sys/class/thermal/thermal_zone0/temp').read()) / 1000
 temp = sense.get_temperature()
-temp_calibrated = temp - ((cpu_temp - temp)/5.466)
+temp_calibrated = temp - ((cpu_temp - temp)/FACTOR)
 
 hum = sense.get_humidity()
 
