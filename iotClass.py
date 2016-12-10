@@ -16,6 +16,7 @@ class attM2x(IotDevice):
 
     def put_json(self, streamDictionary):
         """put request to input a given value into the att M2X"""
+        # TODO Consider changing loop to passing a dictionary in the payload
         for streamName, value in streamDictionary.items():
 	    url = "http://api-m2x.att.com/v2/devices/" + self.deviceNumber + "/streams/" + streamName + "/value"
             payload = {'value': value}
