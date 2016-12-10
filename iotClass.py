@@ -21,25 +21,4 @@ class attM2x(IotDevice):
             payload = {'value': value}
 	    headers = {'X-M2X-KEY': self.X_M2X_KEY,
                    'Content-Type': 'application/json'}
-	    print(url)
-            response = requests.put(url, data=json.dumps(payload), headers=headers)
-
-#this will be the function that calls this class
-# from sense_hat import SenseHat
-#find a way to run this function every hour
-
-
-# sense = SenseHat()
-#gets the tempature, humidity, and pressure of an area
-# temperature = sense.get_temperature()
-# humidity = sense.get_humidity()
-# pressure = sense.get_pressure()
-
-# print(temperature)
-# print(humidity)
-# print(pressure)
-
-# streamDictionary = {'temperature': temperature}# , 'humidity': humidity, 'pressure': pressure}
-
-# m2xSenseHatRasperryPi3 = attM2x("Rarpberry Pi","SenseHat_Raspberry_Py3","04be6de5865d3d9d95a6dbd7182d3083","241bedffb719af49f3b296b783ca5d49")
-# m2xSenseHatRasperryPi3.put_json(streamDictionary)
+        response = requests.put(url, data=json.dumps(payload), headers=headers)
