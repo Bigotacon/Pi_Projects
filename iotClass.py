@@ -43,4 +43,5 @@ class ApiManager(IotDevice):
             self.local_pressure = data['current_observation']['local_pressure_mb']
             self.local_relative_humidity = data['current_observation']['local_relative_humidity']
         elif(query =='alerts'):
-            self.alert_description = data['alerts'][0]['type']
+            if (data['alerts']):
+                self.alert_description = data['alerts'][0]['type']

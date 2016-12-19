@@ -32,17 +32,15 @@ disaster_dic = {
 }
 
 if(api_get.alert_type == None):
-    w = open(alert_dir, 'w')
-    w.write("None")
-    w.close()
+    with open(alert_dir, 'w') as w:
+        w.write('None')
+
 elif (api_get.alert_type in disaster_dic):
-    r = open(alert_dir, 'r')
-    last_alert = r.read()
-    r.close()
+    with open(alert_dir, 'r') as r:
+        last_read = r.read()
 
     if(api_get.alert_type != last_alert):
         message = client.messages.create(to="+14056642575", from_="+14052544690",
                                          body= disaster_dic[api_get.alert_type])
-        w = open(alert_dir, w)
-        w.write(str(api_get.alert_type))
-        w.close()
+        with open(alert_dir, 'w') as w:
+            w.write(str(api_get.alert_type))
