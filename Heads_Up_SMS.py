@@ -32,6 +32,8 @@ disaster_dic = {
 }
 
 if(api_get.alert_type == None):
+    message = client.messages.create(to="+14056642575", from_="+14052544690",
+                                     body= "Five Nights at Freddy's")
     with open(alert_dir, 'w') as w:
         w.write('None')
 
