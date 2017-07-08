@@ -11,11 +11,11 @@ def main():
     pressure = sense.get_pressure()
     FACTOR = 5.466
 
-    cpu_temp = (int(open('/sys/class/thermal/thermal_zone0/temp').read()) / 1000) * 1.8 + 32)
+    cpu_temp = ((int(open('/sys/class/thermal/thermal_zone0/temp').read()) / 1000) * 1.8 + 32)
     temp  = (temp * 1.8) + 32
     temp_calibrated = temp - ((cpu_temp - temp)/FACTOR)
 
-    api_get = apiManager('RaspberryPi', 'wunderground_api', api_key_dic['wunderground'])
+    api_get = ApiManager('RaspberryPi', 'wunderground_api', api_key_dic['wunderground'])
     api_get.set_wunderground_measurement('RI', 'Tiverton', 'conditions')
 
 

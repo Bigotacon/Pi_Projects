@@ -1,0 +1,9 @@
+{% extends "main.html" %}
+{% block content %}
+<div class "row col-md-12">Measurements</div>
+<div class ="row">
+    <div class="col-md-4">Temperature: {{ temp }}</div>
+    <div class="col-md-4">Humidity: {{ humidity }}</div>
+    <div class="col-md-4">Pressure: {{ pressure }}</div>
+</div>
+{% endblock %}

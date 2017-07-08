@@ -1,0 +1,27 @@
+{% extends "main.html" %}
+{% block content %}
+<form action="{{ url_for('writeSensehat') }}" method="post">
+    <label>Message for Sensehat</label>
+    <input type="text" name="textBoxPath">
+    <br>
+    {% if messages %}
+        {% for message in messages %}
+            <input type="radio" name="radioButtonPath" value="{{ message.message }}"> {{ message.message }} </input><br>
+        {% endfor %}
+    {% endif %}
+    <input type="submit">
+</form>
+
+<!-- <div class="row">
+     <div class="col-md-12">
+     {% if messages %}
+     <ul>
+     {% for message in messages %}
+     <li> <strong> {{ message.message }} </strong> </li>
+     {% endfor %}
+     </ul>
+     {% endif %}
+     </div>
+     </div>
+   -->
+{% endblock %}
