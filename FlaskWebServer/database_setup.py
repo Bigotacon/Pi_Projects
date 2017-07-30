@@ -7,8 +7,8 @@ import datetime
 
 Base = declarative_base()
 
-class Measurents(Base):
-    __tablename__ = 'measurents'
+class Measurements(Base):
+    __tablename__ = 'measurements'
 
     id = Column(Integer, primary_key=True)
     created_date = Column(DateTime, default=datetime.datetime.utcnow)
@@ -20,16 +20,17 @@ class Measurents(Base):
     def serialize(self):
         """Return object data in easily serializeable format"""
         return {
-            'id': self.id,
-            'name': self.humidity,
+            'created_date': self.created_date,
+            'humidity': self.humidity,
             'pressure': self.pressure,
             'temp': self.temp,
         }
 
 class Message(Base):
-    __tablename__ ='messages'
+    __tablename__ ='message'
 
     id = Column(Integer, primary_key=True)
+    created_date = Column(DateTime, default=datetime.datetime.utcnow)
     message = Column(String(250))
     #count =  Column(Integer)
 

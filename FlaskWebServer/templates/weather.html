@@ -1,9 +1,22 @@
 {% extends "main.html" %}
 {% block content %}
-<div class "row col-md-12">Measurements</div>
-<div class ="row">
-    <div class="col-md-4">Temperature: {{ temp }}</div>
-    <div class="col-md-4">Humidity: {{ humidity }}</div>
-    <div class="col-md-4">Pressure: {{ pressure }}</div>
-</div>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="{{url_for('static', filename='google.js')}}"></script>
+</head>
+     {% for item in data.response %}
+     {{item.temp}}
+     {% endfor %}
+
+     <div class "row col-md-12">Measurements</div>
+     <div class ="row">
+        <div class="col-md-4" id="temp">Temperature: {{ temp }}</div>
+        <div class="col-md-4" id="humidity">Humidity: {{ humidity }}</div>
+        <div class="col-md-4" id="pressure">Pressure: {{ pressure }}</div>
+     </div>
+     <div class="row">
+        <div class="col-md-4" id='chart_div1'></div>
+        <div class="col-md-4" id='chart_div2'></div>
+     </div>
 {% endblock %}

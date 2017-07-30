@@ -1,27 +1,39 @@
 {% extends "main.html" %}
 {% block content %}
-<form action="{{ url_for('writeSensehat') }}" method="post">
-    <label>Message for Sensehat</label>
-    <input type="text" name="textBoxPath">
-    <br>
-    {% if messages %}
-        {% for message in messages %}
-            <input type="radio" name="radioButtonPath" value="{{ message.message }}"> {{ message.message }} </input><br>
-        {% endfor %}
+<head>
+    <script src="{{url_for('static', filename='jscolor.js')}}"></script>
+</head>
+<form action="{{ url_for('writeSensehat') }}" method="post" class="form-group">
+    <div class="form-group">
+        <label for="userMessage">Message for Raspberry Pi</label>
+        <input type="text" name="textValue" class="form-control">
+    </div>
+         {% if messages %}
+    <div class="form-group">
+        <label for="textOptions">Add from a list of past responses</label>
+        <select name="options" class="form-control">
+            <option selected="selected"></option>
+        {%for message in messages%}
+            <option>{{message.message}}</option>
+       {%endfor%}
+       </select>
+    </div>
     {% endif %}
-    <input type="submit">
+    <div class="form-group">
+        <!-- <label for="backColour">Pick the text color</label> -->
+        <button class="jscolor {valueElement:'textColour'} form-control">
+        Pick the text color
+        </button>
+        <input type="hidden" id="textColour" name="textColour">
+    </div>
+    <div>
+        <!-- <label for="backColour">Pick the background color</label> -->
+        <button class="jscolor {valueElement:'backColour'} form-control">
+        Pick the Background Color
+        </button>
+        <input type="hidden" id="backColour" name="backColour" value="000000"> 
+    </div>
+    <br/>
+    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-
-<!-- <div class="row">
-     <div class="col-md-12">
-     {% if messages %}
-     <ul>
-     {% for message in messages %}
-     <li> <strong> {{ message.message }} </strong> </li>
-     {% endfor %}
-     </ul>
-     {% endif %}
-     </div>
-     </div>
-   -->
 {% endblock %}
